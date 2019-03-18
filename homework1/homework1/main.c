@@ -22,18 +22,23 @@ int main(void)
 	{
 		printf("$ ");
 		fgets(input_str,sizeof(input_str),stdin);
-		if(strcmp(input_str,"read dict.txt\n")==0)
+		if(strcmp(input_str,"read dict.txt\n")==0) 
+		/* 이렇게 하면 "read   dict.txt"와 같이 한 칸 이상 띄우거나 혹은 파일 이름 이 다르면 실행이 안됨. */
+		/* 이보다는 input_str을 명령어 read와 파일 이름으로 split하는게 좋음 */
 		{
+			/* 파일을 읽은 이 부분은 별개의 함수로 만드는게 좋을 듯 */
 			while(fgets(str,sizeof(str),fp)!=NULL)
 			{
 					storage[i]=(char*)malloc(1500);
 					strcpy(storage[i],str);
 					i++;
+					/* 이렇게 공백 라인을 처리하는 것은 좋은 방법은 아님 *?
 					fgets(str,sizeof(str),fp);
 			}
 		}
 		else if(strcmp(input_str,"size\n")==0)
 		{
+			/* 단어의 개수를 i와 같이 너무 의미가 담기지 않은 이름의 변수에 저장하는 것은 좋지 않음 */
 			if(i!=0)
 				printf("%d \n",i);
 			else
@@ -53,6 +58,8 @@ int main(void)
 						target[n]+=32;
 					j++;
 				}
+				/* C언어의 표준 라이브러리는 어떤 문자가 alphabet인지 digit인지 등을 검사하는 함수를 제공함 */
+				/* 이렇게 ASCII코드 값으로 검사하는 것은 좋지 않음 */
 				if(target[0]>=97&&target[0]<122)
 					target[0]-=32;
 				target[n]=0;
