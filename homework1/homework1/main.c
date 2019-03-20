@@ -64,6 +64,8 @@ int main(void)
 					target[0]-=32;
 				target[n]=0;
 				find(storage,0,i-1,target);
+				
+				/* 전역변수 count를 이런 방식으로 이용하는 것은 매우 좋지 않음 */
 				if(count!=0)
 				{
 					printf("Found %d item. \n",count);
